@@ -2,9 +2,9 @@
 #include <ctime> //for measuring running times ofc algorithms 
 #include <cstdlib> //for random number generation
 #include <vector>
+#include <string>
 #define MAX_LEN 50000
 using namespace std;
-
 
 void randIntArray(int arr[], int lower, int upper, int len); 
 void printArray(int arr[], int len); 
@@ -17,6 +17,7 @@ void merge_sort(int arr[], int low, int high);
 void quick_sort(int arr[], int start, int end); 
 void random_quick_sort(int arr[], int start, int end); 
 void counting_sort(int arr[], int start, int end, int len); 
+void radix_sort(int arr[], int len); 
 
 int main()
 {
@@ -59,8 +60,7 @@ int main()
 		*/
 
 		double t; 
-
-/*		//FOR SELECTION SORT
+	/*		//FOR SELECTION SORT
 		t=clock(); 
 		selection_sort(arr, len);
 		t = clock()-t; 
@@ -119,15 +119,16 @@ int main()
 		// //printArray(arr, len); 
 		// cout << "Time taken: " << t << " seconds.\n\n";
 	 
-		//FOR COUNTING SORT
-	 	t=clock(); 
-	 	counting_sort(arr, lower, upper, len); 
-		t = clock()-t; 
-		t /= CLOCKS_PER_SEC;  
-		cout << "Sorting using COUNTING Sort. "; 
-		//printArray(arr, len); 
-		cout << "Time taken: " << t << " seconds.\n\n";
+		// //FOR COUNTING SORT
+	 // 	t=clock(); 
+	 // 	counting_sort(arr, lower, upper, len); 
+		// t = clock()-t; 
+		// t /= CLOCKS_PER_SEC;  
+		// cout << "Sorting using COUNTING Sort. "; 
+		// //printArray(arr, len); 
+		// cout << "Time taken: " << t << " seconds.\n\n";
 
+		radix_sort(arr, len); 
 	 }
 
 	return 0; 
@@ -317,4 +318,22 @@ void counting_sort(int arr[], int start, int end, int len)
 }
 
 //Assumption: Number of digits of largest integer known 
-//void radix_sort(int)
+void radix_sort(int arr[], int len)
+{
+	unsigned int maxDigits=0; 
+	vector <string> nums (len);
+	for (int i=0; i<len; i++)
+	{
+		nums[i] = to_string(arr[i]); 
+		if (nums[i].length() > maxDigits) 
+			maxDigits = nums[i].length(); //Figuring out maxDigits	
+	}
+
+	//padding with 0
+	for (int j=0; j<len; j++)
+	{
+		while (nums[j].length() < maxDigits)
+			nums[j] = "0" + nums[j];  	
+	}
+
+}
