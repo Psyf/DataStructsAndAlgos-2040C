@@ -14,6 +14,9 @@ void bubble_sort(int arr[], int len);
 void insertion_sort(int arr[], int len); 
 void merge(int arr[], int low, int mid, int high); 
 void merge_sort(int arr[], int low, int high); 
+void quick_sort(int arr[], int start, int end); 
+void random_quick_sort(int arr[], int start, int end); 
+void counting_sort(int arr[], int start, int end, int len); 
 
 int main()
 {
@@ -57,7 +60,7 @@ int main()
 
 		double t; 
 
-		//FOR SELECTION SORT
+/*		//FOR SELECTION SORT
 		t=clock(); 
 		selection_sort(arr, len);
 		t = clock()-t; 
@@ -95,8 +98,37 @@ int main()
 		t /= CLOCKS_PER_SEC;  
 		cout << "Sorting using MERGE Sort. "; 
 		//printArray(arr, len); 
+		cout << "Time taken: " << t << " seconds.\n\n";*/
+		
+		
+		// //FOR RANDOM QUICK SORT
+		// t=clock(); 
+		// random_quick_sort(arr, 0, len-1);
+		// t = clock()-t; 
+		// t /= CLOCKS_PER_SEC;  
+		// cout << "Sorting using RANDOM QUICK Sort. "; 
+		// //printArray(arr, len); 
+		// cout << "Time taken: " << t << " seconds.\n\n";
+	
+		// //FOR QUICK SORT
+		// t=clock(); 
+		// quick_sort(arr, 0, len-1);
+		// t = clock()-t; 
+		// t /= CLOCKS_PER_SEC;  
+		// cout << "Sorting using QUICK Sort. "; 
+		// //printArray(arr, len); 
+		// cout << "Time taken: " << t << " seconds.\n\n";
+	 
+		//FOR COUNTING SORT
+	 	t=clock(); 
+	 	counting_sort(arr, lower, upper, len); 
+		t = clock()-t; 
+		t /= CLOCKS_PER_SEC;  
+		cout << "Sorting using COUNTING Sort. "; 
+		//printArray(arr, len); 
 		cout << "Time taken: " << t << " seconds.\n\n";
-	}
+
+	 }
 
 	return 0; 
 }
@@ -226,3 +258,63 @@ void merge(int arr[], int low, int mid, int high)
 	for (int k=0; k<len; k++)
 		arr[low++] = tempArr[k];  
 }
+
+//start is the first index and end is the last index
+void quick_sort(int arr[], int start, int end)
+{
+	int pivot = arr[start];
+	int storeIndex = start+1; 
+
+	if (start<end)
+	{
+		for (int i=start+1; i<=end; i++)
+		{
+			if (arr[i] < pivot)
+				swap(arr, i, storeIndex++); 
+		}
+		swap(arr, start, storeIndex-1);
+
+		quick_sort(arr, storeIndex, end); 
+		quick_sort(arr, start, storeIndex-2); 
+	}
+}
+
+//start is the first index and end is the last index
+void random_quick_sort(int arr[], int start, int end)
+{
+	if (start<end)
+	{
+		swap(arr, rand() % (end-start+1)+start, start); //taking a random idx and taking it to the start
+
+		int pivot = arr[start];  
+		int storeIndex = start+1; 
+
+		for (int i=start+1; i<=end; i++)
+		{
+			if (arr[i] < pivot)
+				swap(arr, i, storeIndex++); 
+		}
+		swap(arr, start, storeIndex-1);		
+		random_quick_sort(arr, storeIndex, end); 
+		random_quick_sort(arr, start, storeIndex-2); 
+	}
+}
+
+//Assumption: small range of integers, start and end signifying them
+void counting_sort(int arr[], int start, int end, int len)
+{
+	//Make a vector for numbers
+	//Initialized to 0 by default???? NOTE:: ASK STEVEN
+	vector <int> store (end-start+1);  
+
+	for (int i=0; i<len; i++)
+		store[arr[i]-start]++;
+
+	int storeIdx=0; 
+	for (int j=0; j<end-start+1; j++)
+		for (int k=0; k<store[j]; k++)
+			arr[storeIdx++] = j+start; 
+}
+
+//Assumption: Number of digits of largest integer known 
+//void radix_sort(int)
