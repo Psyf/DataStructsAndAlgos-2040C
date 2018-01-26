@@ -1,8 +1,20 @@
+/*
+//	My implementation of sorting algorithms learnt so far
+//	Done to get used to C++, github and learn the algos hands on (and compare their speeds)
+// 	Want to get it to a stage where this program is enough to supplement other teaching materials
+// 	For now, head on over to VisuAlgo for learning the algos
+//	Work in Progress
+//	Feel free to take a look at the TO DO notes and contribute/branch 
+//	Also feel free to contact me to discuss whatever can be done better :)
+// 	- Saif Uddin Mahmud
+*/
+
 #include <iostream>
 #include <ctime> //for measuring running times ofc algorithms 
 #include <cstdlib> //for random number generation
 #include <vector>
 #include <string>
+#include <queue>
 #define MAX_LEN 50000
 using namespace std;
 
@@ -25,6 +37,7 @@ int main()
 	
 	while (true)
 	{
+		//TO DO 
 		//RANDOM MODE
 		//Add file mode later 
 		//Add manual input mode later
@@ -38,97 +51,89 @@ int main()
 			break; 
 		} 
 
+		//TO DO 
 		//Currently restricting length of randomly generated array 
 		//Next version will experiement with std::vector and std::array 
 		if (len>MAX_LEN) 
 		{
-			cout<< "ERROR: Max array length is 2000. Try again.\n\n"; 
+			cout<< "ERROR: Max array length is " << MAX_LEN << ". Try again.\n\n"; 
 			continue; 
 		}
 
 		int arr[MAX_LEN];
 		randIntArray(arr, lower, upper, len); 
 
-		/*
+		//TO DO
 		//Add more algorithms later
 		//Add specific comparison mode later 
 		//Add graphing functionality later 
+		//Compare with std::sort later
+		//Break down to different files later
 		cout << "Enter number of sorting algoithm you'd like to try:\n";
-		cout << "1 for selection Sort\n2 for Selection Sort\n3 for Insertion Sort\n";
+		cout << "1 for Selection Sort\n2 for Bubble Sort\n3 for Insertion Sort\n";
 		cout << "4 for Merge Sort\n5 for Quick Sort\n6 for Randomized Quick Sort\n7 for Count Sort\n";
-		cout << "8 for Radix Sort\n9 for a test run of all the sorting algorithms.:\n"; 
-		*/
+		cout << "8 for Radix Sort\n9 for a test run of all the sorting algorithms.(not yet implemented):\n"; 
+		
+		int sortingWith; 
+		cin >> sortingWith; 
 
 		double t; 
-	/*		//FOR SELECTION SORT
-		t=clock(); 
-		selection_sort(arr, len);
-		t = clock()-t; 
-		t /= CLOCKS_PER_SEC;  
-		cout << "Sorting using SELECTION Sort. "; 
-		//printArray(arr, len); 
-		cout << "Time taken: " << t << " seconds.\n\n";
+
+		t=clock();
+		switch (sortingWith)
+		{ 
+			case SELECTION: 
+			{
+				selection_sort(arr, len);
+				break; 		
+			}
+			case BUBBLE: 
+			{
+				bubble_sort(arr, len);
+				break; 		
+			}
+			case INSERTION: 
+			{
+				insertion_sort(arr, len);
+				break; 		
+			}
+			case MERGE: 
+			{
+				merge_sort(arr, 0, len);
+				break; 		
+			}
+			case QUICK: 
+			{
+				quick_sort(arr, 0, len-1);
+				break; 		
+			}
+			case R_QUICK: 
+			{
+				random_quick_sort(arr, 0, len-1);
+				break; 		
+			}
+			case COUNTING: 
+			{
+				counting_sort(arr, lower, upper, len);
+				break; 		
+			}		
+			case RADIX: 
+			{
+				radix_sort(arr, len);
+				break; 		
+			}
+			default: 
+			{
+				cout << "No such option yet.\nPlease try again.\n\n"
+				continue;  
+			}
+		}
 		
-
-		//FOR BUBBLE SORT
-		t=clock(); 
-		bubble_sort(arr, len);
 		t = clock()-t; 
-		t /= CLOCKS_PER_SEC;  
-		cout << "Sorting using Enhanced Bubble Sort. "; 
-		//printArray(arr, len); 
+		t /= CLOCKS_PER_SEC;   
+		//TO USERS: Toggle next line's // to print sorted array
+		//printArray(arr, len);		 
 		cout << "Time taken: " << t << " seconds.\n\n";
-
-
-		//FOR INSERTION SORT
-		t=clock(); 
-		insertion_sort(arr, len);
-		t = clock()-t; 
-		t /= CLOCKS_PER_SEC;  
-		cout << "Sorting using INSERTION Sort. "; 
-		//printArray(arr, len); 
-		cout << "Time taken: " << t << " seconds.\n\n";
-
-
-
-		//FOR MERGE SORT
-		t=clock(); 
-		merge_sort(arr, 0, 4);
-		t = clock()-t; 
-		t /= CLOCKS_PER_SEC;  
-		cout << "Sorting using MERGE Sort. "; 
-		//printArray(arr, len); 
-		cout << "Time taken: " << t << " seconds.\n\n";*/
-		
-		
-		// //FOR RANDOM QUICK SORT
-		// t=clock(); 
-		// random_quick_sort(arr, 0, len-1);
-		// t = clock()-t; 
-		// t /= CLOCKS_PER_SEC;  
-		// cout << "Sorting using RANDOM QUICK Sort. "; 
-		// //printArray(arr, len); 
-		// cout << "Time taken: " << t << " seconds.\n\n";
-	
-		// //FOR QUICK SORT
-		// t=clock(); 
-		// quick_sort(arr, 0, len-1);
-		// t = clock()-t; 
-		// t /= CLOCKS_PER_SEC;  
-		// cout << "Sorting using QUICK Sort. "; 
-		// //printArray(arr, len); 
-		// cout << "Time taken: " << t << " seconds.\n\n";
-	 
-		// //FOR COUNTING SORT
-	 // 	t=clock(); 
-	 // 	counting_sort(arr, lower, upper, len); 
-		// t = clock()-t; 
-		// t /= CLOCKS_PER_SEC;  
-		// cout << "Sorting using COUNTING Sort. "; 
-		// //printArray(arr, len); 
-		// cout << "Time taken: " << t << " seconds.\n\n";
-
-		radix_sort(arr, len); 
 	 }
 
 	return 0; 
@@ -336,4 +341,26 @@ void radix_sort(int arr[], int len)
 			nums[j] = "0" + nums[j];  	
 	}
 
+	cout << "ping1\n"; 
+
+	vector <queue<string>> myQ (10);  
+	for (int j=0; j<maxDigits; j++) //Iterates over the whole array maxDigits times
+	{
+		for (int k=0; k<len; k++)	//puts the strNums inside appropriate 
+			myQ[(int) (nums[k][maxDigits-j-1]-'0')].push(nums[k]); 					
+	
+		nums.clear(); //easier to push_back
+		nums.reserve(len); //more efficient because you don't need to resize more than once
+
+		for (int m=0; m<10; m++)
+			while (!myQ[m].empty()) 
+			{
+				nums.push_back(myQ[m].front()); 
+				myQ[m].pop(); 
+			}
+		//TESTING: printing nums after every iteration
+		for (int n=0; n<len; n++)
+			cout<<nums[n] << " "; 
+		cout << endl; 
+	}
 }
