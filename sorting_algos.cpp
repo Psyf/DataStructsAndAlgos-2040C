@@ -209,7 +209,8 @@ void selection_sort(int arr[], int len)
 
 void bubble_sort(int arr[], int len)
 {
-	bool swapped; 
+	bool swapped;
+	//TO DO: shorten this.   
 	int sorted=0; 
 	do {
 		swapped = false; 
@@ -221,6 +222,7 @@ void bubble_sort(int arr[], int len)
 				swap(arr, i, i+1); 
 			}
 		}
+		sorted++;
 	} while (swapped); 
 }
 
