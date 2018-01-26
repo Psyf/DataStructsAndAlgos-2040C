@@ -15,7 +15,17 @@
 #include <vector>
 #include <string>
 #include <queue>
+
 #define MAX_LEN 50000
+#define SELECTION 1
+#define BUBBLE 2
+#define INSERTION 3
+#define MERGE 4
+#define QUICK 5
+#define R_QUICK 6
+#define COUNTING 7
+#define RADIX 8 
+
 using namespace std;
 
 void randIntArray(int arr[], int lower, int upper, int len); 
@@ -41,8 +51,10 @@ int main()
 		//RANDOM MODE
 		//Add file mode later 
 		//Add manual input mode later
+		//TO DO: Securing the input channels
+		//currently, giving it string breaks it
 		cout << "Enter [lower_bound] [upper_bound] [length] of your randomly generated array\n";
-		cout << "Enter 0 0 0 to exit program:\n";
+		cout << "Enter 0 0 0 to exit program:\n";	
 		cin >> lower >> upper >> len; 
 
 		if (lower==0 && upper==0 && len==0) 
@@ -124,7 +136,7 @@ int main()
 			}
 			default: 
 			{
-				cout << "No such option yet.\nPlease try again.\n\n"
+				cout << "No such option (yet).\nPlease try again.\n\n"; 
 				continue;  
 			}
 		}
@@ -341,7 +353,6 @@ void radix_sort(int arr[], int len)
 			nums[j] = "0" + nums[j];  	
 	}
 
-	cout << "ping1\n"; 
 
 	vector <queue<string>> myQ (10);  
 	for (int j=0; j<maxDigits; j++) //Iterates over the whole array maxDigits times
@@ -358,9 +369,5 @@ void radix_sort(int arr[], int len)
 				nums.push_back(myQ[m].front()); 
 				myQ[m].pop(); 
 			}
-		//TESTING: printing nums after every iteration
-		for (int n=0; n<len; n++)
-			cout<<nums[n] << " "; 
-		cout << endl; 
 	}
 }
