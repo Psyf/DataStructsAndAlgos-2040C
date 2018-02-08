@@ -10,7 +10,7 @@ Author: Saif
 #include <iostream>
 using namespace std;
 
-//Class of a singly linked list: ERROR
+//Class of a singly linked list
 class SLL 
 {
 private: 
@@ -75,12 +75,11 @@ public:
 		}
 		numVertices++;
 	}
-	//ERROR: doesnt work if index is 0 or numVertices
 	void insertAtIndex(int index, int number)
 	{
 		if (index < 0 || index > numVertices) return; 
-		else if (index == 0) insertAtHead(number); 
-		else if (index == numVertices) insertAtTail(number); 
+		else if (index == 0) {insertAtHead(number); return;} 
+		else if (index == numVertices) {insertAtTail(number); return;} 
 		else 
 		{	
 			vertex *tempOld=headPointer; 
@@ -105,15 +104,18 @@ public:
 		vertex *temp = headPointer; 
 		for (int i=0; i<numVertices-1; i++)
 			temp = temp->next; 
-		delete tailPointer; 
 		tailPointer = temp;
+		temp = temp->next; 
+		delete temp; 
 		numVertices--; 
 	}
-	//ERROR: doesnt work if index is 0
 	void deleteFromIndex(int index)
 	{
 		if (index < 0 || index >= numVertices) return;  
-		else if (index == 0) deleteHead();  
+		else if (index == 0) {
+			deleteHead();  
+			return;
+		}
 		else 
 		{
 			vertex *tempOld = headPointer; 
@@ -176,14 +178,14 @@ private:
 public: 
 	void enqueue(int number)
 	{
-		mySll.insertAtHead(number); 
+		mySll.insertAtTail(number); 
 	}
 	//ERROR: How to stop from dequeue-ing an empty queue?
 	int dequeue()
 	{
-		int lastElem = (mySll.getTail())->number;
-		mySll.deleteTail(); 
-		return lastElem; 
+		int Elem = (mySll.getHead())->number;
+		mySll.deleteHead(); 
+		return Elem; 
 	}
 	int getSize()
 	{
@@ -192,16 +194,23 @@ public:
 	//ERROR: How to stop from peeking at empty queue?
 	int peek()
 	{
-		return (mySll.getTail())->number;
+		return (mySll.getHead())->number;
 	}
 	void printQueue()
 	{
-		cout << "Tail of Queue here: "; 
+		cout << "Head of Queue here: "; 
 		mySll.printSLL(); 
 	}
 }; 
 
 int main(void)
 { 
-	return 0; 
+	SLL mySll; 
+	mySll.insertAtHead(1); 
+	mySll.insertAtHead(2);
+	mySll.insertAtHead(3);  
+	mySll.printSLL(); 
+	mySll.deleteFromIndex(0); 
+	mySll.printSLL();
+ 	return 0; 
 }
