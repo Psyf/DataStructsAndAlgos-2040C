@@ -1,27 +1,27 @@
 /*
-Implementing a few ADTs to learn while doing
-Author: Saif
+Implementing a few ADTs.
+Learn by coding!
+Author: Psyf
 */
 
-//TODO: 
-//Fix the errors
-//Figure out how to use "template" so that the ADTs can be more dynamic
-//Change Priority_queue to a vector again later
+//TO DO:
+//Implement DLL and Deque
 
 #include <iostream>
-#include <array>
-#include <queue>
+#include <vector>
+#include <cstdlib>
 
 using namespace std;
 
 //Class of a singly linked list
+template <class T>
 class SLL 
 {
 	private: 
 		//Doing a struct for vertices
 		struct vertex 
 		{
-			int number; 
+			T element; 
 			struct vertex* next; 	
 		};   
 		vertex *headPointer, *tailPointer; 
@@ -29,7 +29,7 @@ class SLL
 	public: 
 		SLL()
 		{
-			tailPointer = headPointer=NULL;
+			tailPointer=headPointer=NULL;
 			numVertices = 0;  
 		}
 		int getSize()
@@ -44,54 +44,54 @@ class SLL
 		{
 			return tailPointer; 
 		}
-		void insertAtHead(int number)
+		void insertAtHead(T element)
 		{
 			if (numVertices == 0)
 			{
 			headPointer = new vertex;
 			tailPointer = headPointer;
-			headPointer->number = number; 
-			tailPointer->number = number;   
+			headPointer->element = element; 
+			tailPointer->element = element;   
 			}	
 			else 
 			{
 				vertex *temp = new vertex; 
 				temp->next = headPointer; 
-				temp->number = number; 
+				temp->element = element; 
 				headPointer = temp; 
 			}
 			numVertices++;  
 		}
-		void insertAtTail(int number)
+		void insertAtTail(T element)
 		{
 			if (numVertices == 0)
 			{
 				headPointer = new vertex;
 				tailPointer = headPointer;  
-				headPointer->number = number; 
-				tailPointer->number = number;   
+				headPointer->element = element; 
+				tailPointer->element = element;   
 			}
 			else 
 			{
 				vertex *temp = new vertex; 
-				temp->number = number; 
+				temp->element = element; 
 				tailPointer->next = temp; 
 				tailPointer = temp; 
 			}
 			numVertices++;
 		}
-		void insertAtIndex(int index, int number)
+		void insertAtIndex(int index, T element)
 		{
 			if (index < 0 || index > numVertices) return; 
-			else if (index == 0) {insertAtHead(number); return;} 
-			else if (index == numVertices) {insertAtTail(number); return;} 
+			else if (index == 0) {insertAtHead(element); return;} 
+			else if (index == numVertices) {insertAtTail(element); return;} 
 			else 
 			{	
 				vertex *tempOld=headPointer; 
 				for (int i=0; i<index-1; i++)
 					tempOld = tempOld->next; 
 				vertex *tempNew = new vertex; 
-				tempNew->number = number; 
+				tempNew->element = element; 
 				tempNew->next = tempOld->next; 
 				tempOld->next = tempNew; 
 			}
@@ -138,43 +138,44 @@ class SLL
 			vertex *temp = headPointer; 
 			for (int i=0; i<numVertices; i++)
 			{
-				cout << temp->number << " "; 
+				cout << temp->element << " "; 
 				temp = temp->next; 
 			}
 			cout << endl; 
 		}
 }; 
 
-class priority_queue_c
+template <class T>
+class priority_queue
 {
 	private: 
-		array <int, 1000001> arr; 
+		vector <T> arr;  
 		int numVertices;
 	public: 
-		priority_queue_c(){numVertices = 0; arr[0] = -1;}
+		priority_queue() {numVertices = 0; arr.reserve(1000000); arr[0] = -1;}
 		int size()
 		{
 			return numVertices; 
 		}
-		int top()
+		T top()
 		{ 
 			if (numVertices == 0) return -1; 
 			return arr[1]; 
 		}
-		void push(int number)
+		void push(T element)
 		{
 			numVertices++;
 			int curIdx = numVertices; 
-			arr[numVertices] = number; 
+			arr[numVertices] = element; 
 			while ((curIdx > 1) && (arr[curIdx/2] < arr[curIdx]))
 			{
 				swap(arr[curIdx/2], arr[curIdx]); 
 				curIdx = curIdx/2; 
 			} 
 		}
-		int pop()
+		T pop()
 		{
-			int temp; 
+			T temp; 
 			if (numVertices==0) return -1;  
 			else 
 			{
@@ -211,20 +212,20 @@ class priority_queue_c
 		}
 }; 
 
-
+template <class T>
 class stack
 {
 	private: 
-		SLL mySll; 	//Using class composition
+		SLL <T> mySll; 	//Using class composition
 	public: 
-		void push(int number)
+		void push(T element)
 		{
-			mySll.insertAtHead(number); 
+			mySll.insertAtHead(element); 
 		}
-		//ERROR: How to check against popping when there is no element?
-		int pop()
+		T pop()
 		{
-	 		int lastElem = (mySll.getHead())->number; 
+			if (mySll.getSize() == 0) {cout << "INVALID OPERATION: No element in stack.\n"; exit(EXIT_FAILURE);} 
+	 		T lastElem = (mySll.getHead())->element; 
 			mySll.deleteHead(); 
 			return lastElem; 
 		}
@@ -232,10 +233,10 @@ class stack
 		{
 			return mySll.getSize(); 
 		}
-		//ERROR: How to check against peeking when there is no element? 
-		int peek()
+		T peek()
 		{
-			return (mySll.getHead())->number; 
+			if (mySll.getSize() == 0) {cout << "INVALID OPERATION: No element in stack.\n"; exit(EXIT_FAILURE);} 	
+			return (mySll.getHead())->element; 
 		}
 		void printStack()
 		{
@@ -244,19 +245,20 @@ class stack
 		}
 };
 
+template <class T>
 class queue 
 {
 	private: 
-		SLL mySll; 
+		SLL <T> mySll; 
 	public: 
-		void enqueue(int number)
+		void enqueue(int element)
 		{
-			mySll.insertAtTail(number); 
+			mySll.insertAtTail(element); 
 		}
-		//ERROR: How to stop from dequeue-ing an empty queue?
-		int dequeue()
+		T dequeue()
 		{
-			int Elem = (mySll.getHead())->number;
+			if (mySll.getSize() == 0) {cout << "INVALID OPERATION: No element in queue.\n"; exit(EXIT_FAILURE);} 		
+			int Elem = (mySll.getHead())->element;
 			mySll.deleteHead(); 
 			return Elem; 
 		}
@@ -264,10 +266,10 @@ class queue
 		{
 			return mySll.getSize(); 
 		}
-		//ERROR: How to stop from peeking at empty queue?
-		int peek()
+		T peek()
 		{
-			return (mySll.getHead())->number;
+			if (mySll.getSize() == 0) {cout << "INVALID OPERATION: No element in queue.\n"; exit(EXIT_FAILURE);} 	
+			return (mySll.getHead())->element;
 		}
 		void printQueue()
 		{
@@ -276,37 +278,8 @@ class queue
 		}
 }; 
 
+
 int main(void)
-{ 
-	priority_queue_c PQ_c; 
-	PQ_c.push(1); 
-	PQ_c.push(3); 
-	PQ_c.push(2);
- 	PQ_c.pop(); 
- 	PQ_c.push(4);
- 	PQ_c.pop(); 
- 	PQ_c.push(1);
- 	PQ_c.push(5); 
- 	PQ_c.push(2); 
- 	PQ_c.pop(); 
- 	PQ_c.push(1); 
- 	while (PQ_c.size() != 0) {cout << PQ_c.top(); PQ_c.pop(); cout << PQ_c.size();}
- 	cout << endl; 
-
- 	priority_queue <int> PQ; 
- 	PQ.push(1); 
- 	PQ.push(3); 
- 	PQ.push(2); 
- 	PQ.pop();
- 	PQ.push(4);
- 	PQ.pop();
- 	PQ.push(1);
- 	PQ.push(5);
- 	PQ.push(2);
- 	PQ.pop();
- 	PQ.push(1); 
- 	while (PQ.size() != 0) {cout << PQ.top(); PQ.pop(); cout << PQ.size();}   
- 	cout << endl; 
-
- 	return 0; 
+{  
+	return 0; 
 }
