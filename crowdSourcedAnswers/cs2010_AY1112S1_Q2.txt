@@ -1,0 +1,71 @@
+Note to firstTimers: 
+This was created for AY17/18S2 of 2040C by CEG class of 2021, NUS. 
+Please do contribute if you know the answers, or opn up a comment thread if you want to discuss. 
+Note that we might have minor differences in syllabi, thus leading to blank answers. Enjoy! -- SUM 
+
+Section 1
+---------
+1. V(V-1)/2; spanning
+2. Matrix, List
+3. O(V+E); Adjacency Matrix
+4. DFS, u, v is in the spanning tree/visited list
+5. V-1, there is a unique path...
+6. directed acyclic; appears before 
+7. ???
+8. not solved by Djikstra's; you can always reduce the weight of any some vertex by following the negative weight cycle. 
+9. simple, V-1 (????)
+
+Section 2
+----------
+1. unreachable : 7 and 8
+	0---1---3---4
+	|
+	|
+	2---5---6
+
+2. Prim's starting from 0, partial MST weight = 29
+	   1	 1     2
+	0-----2-----4-----5
+	      |      \
+	      |3      \20
+	      |	 2     \
+	      1-----3   7
+
+3.
+  0<---1<---3<---2<---5<---4<---7--->6--->8
+ 32   23   21   20   17   12    0   11    15
+
+4.
+DFS forest: 
+0---1---2	3---4---5
+		    |
+		    |
+		    6
+TopoSort : 0, 1, 2, 3, 4, 6, 5
+
+5. Edge List: (0, 1), (0, 2), (1, 2), (3, 4), (3, 5), (4, 5), (4, 6), (6, 5)
+
+Section 3
+----------
+No access to the PSes
+
+Section 4
+----------
+1. Correct. After an edge goes from left to right, it can create a cycle by coming back directly. That is 2 edge cycle (even). Alternately, it can come back to some other vertex on the left, and go back to the right and continue until it creates a cycle. Note that every time it comes back, it needs 2 moves (since bipartite). So 2E moves needed. Even. QED
+
+2. False. May create a cycle. 
+
+3. False. The graph my be disconnected. 
+
+4. True. (???)
+
+5. ???
+
+Section 5
+---------
+1. Model the currencies as Vertices, and exchange rate between them as weights/edges 
+2. Modify djikstra's to do SSLP instead
+3. Cost of going to a vertex is d*weight. 
+4. If you find any weight that is > 1, return true. 
+5. after everything is done, return false (only done if no profit)
+
