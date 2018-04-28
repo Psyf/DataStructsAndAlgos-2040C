@@ -1,0 +1,125 @@
+Note to firstTimers: 
+This was created for AY17/18S2 of 2040C by CEG class of 2021, NUS. 
+Please do contribute if you know the answers, or opn up a comment thread if you want to discuss. 
+Note that we might have minor differences in syllabi, thus leading to blank answers. Enjoy! -- SUM 
+
+Section 1
+------------
+1. V**2/2, V-1
+2. tree, complete
+3. O(E), O(E)
+4. Edgle List, Adjacancy Matrix
+5. Djikstra's, ???
+6. slow, wrong
+7. BFS, Modified Djikstras
+
+Section 2
+-----------
+1. (too hard to draw here?)
+
+2. o--o--o o o
+3. NOT bipartite
+
+4. 	0---1---3---4---7---8
+	    |       |
+	    2       6
+
+5.     6
+       |
+   0---3---4---5---7
+   |
+   1---2
+
+6. 	   6     3     1     4     11
+	0-----3-----4-----5-----6-----7
+	|
+	|5
+	|
+	2
+
+Section 3
+----------
+1. True, A tree has V-1 edges and is connected by definition. If you remove an edge, not connected anymore. If you add an edge, tree will have a cycle. 
+
+2. Correct. Describes a simple, connected DAG. 
+
+3. False. You can preprocess the edge list (sort and search). You can also remove edges from the edge list once done with an edge (may greatly reduce time needed if edge list is stored in a set/unordered_set)
+
+4. ? 
+
+5. ? 
+
+6. ?
+
+Section 4
+-----------
+bool isTree(vector <vector<pair<int, int> > adjList)
+{
+	//check if correct number of edges
+	int n = 0; 
+	for (auto &elem: adjList)
+	{
+		n += elem.size(); 
+		if (elem.size() == 0)	//disconnected 
+			return false; 
+	}
+	if (n != 2*adjList.size()-2)
+		return false; 
+	else 
+		return true;
+}
+
+Section 5
+-----------
+5.6 ???
+
+5.7) 
+
+bool insideMaze(int r, int c, int R, int C)
+{
+	if (r >= R || r < 0) return false; 
+	if (c >= C || c < 0) return false; 
+	return true; 
+}
+
+//precondition: guaranteed to be inside the maze
+bool onMazeBorder(int r, int c, int R, int C)
+{
+	if (r == R-1) return true; 
+	if (c == C-1) return true; 
+	return false; 
+}
+
+pair <int, int> you(int R, int c, vector<string>M)
+{
+	for (int i=0; i<R; i++)
+		for (intj=0; j<C; j++)
+			if (M[i][j] == 'Y')
+				return make_pair<int, int>(i, j); 
+	return {-1, -1}; //if not found in the maze
+}
+
+vector <pair<int, int> > Fire(int R, int C, vector<string>M)
+{
+	vector <pair<int, int> > result; 
+	for (int i=0; i<R; i++)
+		for (int j=0; j<C; j++)
+			if (M[i][j] == 'F') 
+				result.push_back({i, j});
+	return result; 
+}
+
+psuedoCode for algo (most probably incorrect and not O(RC))
+1. Create a R*C matrix, fireMat. 
+2. Simulate a fire for every minute. 
+3. In the Matrix, store number pertaining to when the square was burnt in the simulation. 
+
+4. Create another matrix, moveMat. 
+5. run SSSP from 'Y' to all other squares
+6. Store the result in moveMat. 
+
+7. Compare moveMat and fireMat. Mark the squares that 'Y' can reach before the fire burns it. 
+8. If there is no border reminaing, return -1. 
+9. If there is a border remaining, see if there is a path to that border after the fire vs move comparison. 
+10. If there is, return the distance+1. 
+
