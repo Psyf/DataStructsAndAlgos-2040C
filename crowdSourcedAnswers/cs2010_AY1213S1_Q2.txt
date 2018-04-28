@@ -6,7 +6,7 @@ Note that we might have minor differences in syllabi, thus leading to blank answ
 Section 1
 ------------
 1. V**2/2, V-1
-2. tree, complete
+2. complete, complete
 3. O(E), O(E)
 4. Edgle List, Adjacancy Matrix
 5. Djikstra's, ???
@@ -16,20 +16,16 @@ Section 1
 Section 2
 -----------
 1. (too hard to draw here?)
-
 2. o--o--o o o
-3. NOT bipartite
-
+3. on the left: 1, 3, 4, 8, 6. On the right: 2, 5, 7, 9. 0 can go to either. 
 4. 	0---1---3---4---7---8
 	    |       |
 	    2       6
-
 5.     6
        |
    0---3---4---5---7
    |
    1---2
-
 6. 	   6     3     1     4     11
 	0-----3-----4-----5-----6-----7
 	|
