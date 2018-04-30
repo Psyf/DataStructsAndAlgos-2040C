@@ -7,7 +7,7 @@ Section 1
 ------------
 1. V**2/2, V-1
 2. complete, complete
-3. O(E), O(E)
+3. O(V+E), O(E)
 4. Edgle List, Adjacancy Matrix
 5. Djikstra's, ???
 6. slow, wrong
