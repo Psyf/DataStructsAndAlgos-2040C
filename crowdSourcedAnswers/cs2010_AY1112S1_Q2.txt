@@ -59,7 +59,10 @@ Section 4
 
 4. True. (???)
 
-5. ???
+5. False. Counterexample, remove 2 (articulation point) and find 3 CC:
+	1-----2------3
+	      |
+	      4
 
 Section 5
 ---------
