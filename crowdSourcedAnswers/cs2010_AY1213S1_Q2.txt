@@ -81,8 +81,8 @@ bool insideMaze(int r, int c, int R, int C)
 //precondition: guaranteed to be inside the maze
 bool onMazeBorder(int r, int c, int R, int C)
 {
-	if (r == R-1) return true; 
-	if (c == C-1) return true; 
+	if (r == 0 || r == R-1) return true; 
+	if (c == 0 || c == C-1) return true; 
 	return false; 
 }
 
