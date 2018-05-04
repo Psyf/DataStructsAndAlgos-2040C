@@ -43,4 +43,6 @@ Section C
 Do BFS until all verteices are covered O(V+E)
 Number of CCs found in O(V+E)
 
-2.2 ???
+2.2 
+O(k(V+E)) solution (aka naive):
+everytime you remove a vertex, do a BFS to count #CC. 
