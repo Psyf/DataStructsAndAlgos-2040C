@@ -1,0 +1,34 @@
+Note to firstTimers: 
+This was created for AY17/18S2 of 2040C by CEG class of 2021, NUS. 
+Please do contribute if you know the answers, or opn up a comment thread if you want to discuss. 
+Note that we might have minor differences in syllabi, thus leading to blank answers. Enjoy! -- SUM 
+
+	Section 1
+	1. BFS Spanning tree
+	2. are 1 edge
+	3. BFS
+	4. V-1
+	5. VLogV
+	6. TopoSort + 1 pass Bellman Ford
+	7. Bellman Fords
+	8. False 
+	9. true 
+	10. true 
+	11. false 
+	12. ???
+	13. false 
+	14. false 
+	15. false 
+
+	Section 2
+	1. ??? 
+	2. False. A path from A to B may have weights 3, 4, 5. Another path may be 1, 2, 9
+	3. ???
+	4. False. If there is a negative weight cycle before the vertex, it may be enqueed infinite number of times. 
+	5. ???
+
+	Section 3
+	1a. Do a SSSP from each city reachable by both. Store the results in a PQ with in a tuple (totalDist, Dist to A, dist to B). Return the top. 
+	1b. Run modified Djikstras from s. 
+  [rest not covered in syllabus]
+
