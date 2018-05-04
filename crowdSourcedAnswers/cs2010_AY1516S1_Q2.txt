@@ -1,0 +1,46 @@
+Note to firstTimers: 
+This was created for AY17/18S2 of 2040C by CEG class of 2021, NUS. 
+Please do contribute if you know the answers, or opn up a comment thread if you want to discuss. 
+Note that we might have minor differences in syllabi, thus leading to blank answers. Enjoy! -- SUM 
+
+Section A 
+----------
+1. False. You will have to traverse the graph to know if there is a cycle. 
+2. ???
+3. True. 
+   5     10
+0-----1-----2
+|           |
+|6			|9
+|			|
+3-----------|
+
+4. False. If the edges are in Topological sort order, it will be AC. 
+
+5. False. 
+	3	   6
+0----->1------>2 
+|			   ^
+|______________|
+       9
+
+Section B
+----------
+1. dfs-avoid-odd(0) will visit (in order): 0, 1, 2, 4, 5, 6
+   dfs-avoid-odd(7) will visit (in order): 7
+2. 6C3 = 20 ???
+3. Run Bellman-Fords V-1 times and 1 extra time to see which vertices are relaxed on the last try. Answer: 3, 6, 9, 12, 11, 10. Since 3 can go to -infinity, everything it can reach can go to negative infinity.
+
+4. Make sure that the BFS spanning tree is also the SSSP tree. 
+5. 0---1----2---3---4---5---6
+Make it a tree. One unique path between any two vertices. 
+
+Section C
+---------
+1. BFS() until layer 8. so O(8(V+E)) = O(8(V+V-1)) which is approximately equal to O(V)
+
+2.1: Delete the vertex (remove the edges that are with that vertex) O(2E)
+Do BFS until all verteices are covered O(V+E)
+Number of CCs found in O(V+E)
+
+2.2 ???
