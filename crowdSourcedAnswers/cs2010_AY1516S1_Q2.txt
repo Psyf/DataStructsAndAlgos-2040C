@@ -20,7 +20,7 @@ Section A
 5. False. 
 	3	   6
 0----->1------>2 
-|			   ^
+|              ^
 |______________|
        9
 
@@ -28,7 +28,7 @@ Section B
 ----------
 1. dfs-avoid-odd(0) will visit (in order): 0, 1, 2, 4, 5, 6
    dfs-avoid-odd(7) will visit (in order): 7
-2. 6C3 = 20 ???
+2. 6C3 - 4 triangles formed = 20 - 4 = 16
 3. Run Bellman-Fords V-1 times and 1 extra time to see which vertices are relaxed on the last try. Answer: 3, 6, 9, 12, 11, 10. Since 3 can go to -infinity, everything it can reach can go to negative infinity.
 
 4. Make sure that the BFS spanning tree is also the SSSP tree. 
@@ -37,7 +37,7 @@ Make it a tree. One unique path between any two vertices.
 
 Section C
 ---------
-1. BFS() until layer 8. so O(8(V+E)) = O(8(V+V-1)) which is approximately equal to O(V)
+1. start with BFS(i) and continue until layer 8. So max is O(8(V-1)) which is approximately equal to O(V). If j is connected, we'll have put j in our queue at some point.
 
 2.1: Delete the vertex (remove the edges that are with that vertex) O(2E)
 Do BFS until all verteices are covered O(V+E)
@@ -45,4 +45,5 @@ Number of CCs found in O(V+E)
 
 2.2 
 O(k(V+E)) solution (aka naive):
-everytime you remove a vertex, do a BFS to count #CC. 
+Everytime you remove a vertex, do a BFS to count #CC. 
+(My classmates pointed out that this needs UFDS for the O(V+E) solution. Beyond the scope of 2040C)
