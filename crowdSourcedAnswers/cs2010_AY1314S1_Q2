@@ -9,22 +9,21 @@ Section 1
 2. Prim's and Kruskal's - O(ELogV); BFS/DFS - O(V+E); Bellman - O(VE)
 3. 1. O(V+E)
    2. O(V)
-   3. O(V+E)
+   3. O(V**2)
    4. O(V)
    5. O((V+E)LogE)
    6. O(VLogV)
 4. 1. Modified Djikstra's O(ELogV)
-   2. Modified Djikstra's O(ELogV)
+   2. BFS O(V+E)
    3. TopoSort+DFS O(V+E)
    4. ???
 
 Section 2
 ---------
-1. False. Greedy algorithm. Will go on forever. 
-2. False. Preprocess into ADjacency matrix and then run BF. O(V^2 + VE)
-3. Confused by the Question. BF Killer considered O(VE)?
+1. If modified Djikstra, False; Greedy algorithm; Will go on forever. if Original Djikstra, WA; terminates.  
+2. O(VE)
 4. False. Make a test tree. 
-5. True. Order will be different, but both algorithms will find all certices in the particular connected component. 
+5. True. Order will be different, but both algorithms will find all vertices in the particular connected component. 
 
 Section 3
 ---------
