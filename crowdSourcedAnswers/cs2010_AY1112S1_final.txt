@@ -1,0 +1,78 @@
+Note to firstTimers: 
+This was created for AY17/18S2 of 2040C by CEG class of 2021, NUS. 
+Please do contribute if you know the answers, or opn up a comment thread if you want to discuss. 
+Note that we might have minor differences in syllabi, thus leading to blank answers. Enjoy! -- SUM 
+
+Section 1
+---------
+1. Directed, Acyclic, Connected, unweighted 
+
+2. 
+Min Spanning tree -> Weighted -> Prim's/Kruskal's -> O(ELogV)
+Count (Connected?) Components -> Tree -> BFS/DFS -> O(V+E)
+SSSP -> Weighted (no negative weight cycles) -> BF -> O(VE)
+Diameter of Graph -> Weighted (+ve) -> Floyed Warshall -> O(V^3)
+SSSP -> DAG -> TopoSort, DP -> O(V+E)
+
+3. vertex 0, path: (0, 1, 3, 5, 6) with D[t] = 11
+4. 
+bBST And BinaryHeap
+Similarities: Search(i) is logN in bBST and if permitted, O(N) in Binary Heap. 
+Differences: for every node in bBST, every node in its left subtree is smaller, and everything is bigger on the right subtree. This is not the ase for heaps, it only goes 1 way!
+
+Shortest Paths on DAG and Longest Paths on DAG
+Similarities: Use TopoSort, use a relax operation 
+Differences: relax operations have different conditions. 
+
+Section 2: 
+----------
+1. A. 0, 2, 1, 5, 4, 3, 6
+1. B. 0---2---1 : 4---3---5
+                      |
+                      |
+                      6
+1. C. By the time 0, 1, 2 are done in order, 4 is done. 8 months gone. 3 done, 13 months gone. 6 and 5 stars simultaneously and 8 months to complete. 21 months. 
+1. D. 4 and 6. 
+
+2. 4 possible paths for the first one. (I need to print this to count) paths in the second problem. Make sure you draw the paths for partial marks. 
+
+Section 3
+---------
+1. Make one! 0--->1--->2
+2. False. Negative weight cycles/edges throw them off. 
+3. ???
+4. ???
+5. ???
+
+Section 4
+---------
+A. 2
+B. 
+> Regardless of whether we start at A, B or J, we pass through the edge AB, BC, IJ, AJ. Choose either AB or IJ for minimum cost. (2)
+> If we start at C or I, we always go through CI or AB. Ab is already monitored. So monitor CI. (3) 
+> If we start at D, we always go through DE. If we start at F, we always go through FE. Actually, if we start at anything else, we go through at least one of these 2. (these are the minimum, thus chosen) (1 + 1)
+
+So my answer is  7. 
+
+C. No. 
+D. A spanning tree. 
+E. 
+F. 
+
+Section 5
+---------
+A. No. 
+B. 
+{8}, {1, 5, 4, 7}
+{8, 1}, {5, 4, 7}
+{8, 1, 5}, {4, 7}
+{8, 1, 5, 4}, {7}
+C. 9
+D. 6 with {8}, {1, 5, 4, 7}
+E. 3 with {8}, {1, 5, 4}, {7}
+F. 1 with {8}, {1}, {5, 4}, {7}
+G. O(1), just say 0
+H. O(N), return max-min
+I. 
+J. 
+
