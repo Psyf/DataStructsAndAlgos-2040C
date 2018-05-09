@@ -1,0 +1,55 @@
+Note to firstTimers: 
+This was created for AY17/18S2 of 2040C by CEG class of 2021, NUS. 
+Please do contribute if you know the answers, or opn up a comment thread if you want to discuss. 
+Note that we might have minor differences in syllabi, thus leading to blank answers. Enjoy! -- SUM 
+
+Section 1
+---------
+1. Applications of BFS 
+	- TopoSort using Kahn's algorithm 
+	- Number of CC in a graph
+	- test whether a vertex is reachable from the source/graph traversal 
+	- SSSP on unweighted graph/weighted tree
+	- ??? 
+2. ???
+3. 1) 16	2) 7	3) 7	4) 3
+
+Section 2
+---------
+1. False. May be a bridge. 
+2. True. Otherwise MST will not be spanning the whole graph. 
+3. False. An example graph is two different paths with unique weights but the sum is equal 
+4. True. If there is a shorter path, there is at least one more shorter edge. Contrafiction. 
+5. False. If anything, it will have LESS number of toposorts. 
+
+Section 3
+---------
+3.1.2 
+A {0, 0, 0, 0}
+B {1, 1, 1, 1}
+C {2, 4, 8, 1}
+
+3.1.3 (bitmasking not in syllabus so skipping)
+
+Section 4
+---------
+4.1.3
+1. Vertices are the squares in the grid. 
+Edges represent where the R can travel to from that square.
+2. |V| = 64, |E| = 7*7*4 + rest*2 (bidirectional edges)
+3. SSSP 
+4. unweighted graph so BFS should work. O(V+E)
+
+4.1.5
+1. Vertices are squares AND direction they're facing> 
+2. |V| = 64*4, |E| *= 4
+3. SSSP 
+4. Still unweighted, so BFS O(V+E)
+
+4.1.6
+Problem of enumerating all possible ways. 
+
+This time we use DFS. Instead of a visited array, we use a visited hashtable. Here we use our moves as a key. so if we have moved like FFRFLF,t this is hashed and stored. Storing and lookup are both O(1). 
+
+Every DFS calls also have 3 more parameters, F, R, L cards remaining. If any are -1, return. If reached target cell successfully, numWays+=1;
+
