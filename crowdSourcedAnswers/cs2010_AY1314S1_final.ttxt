@@ -1,0 +1,79 @@
+Note to firstTimers: 
+This was created for AY17/18S2 of 2040C by CEG class of 2021, NUS. 
+Please do contribute if you know the answers, or opn up a comment thread if you want to discuss. 
+Note that we might have minor differences in syllabi, thus leading to blank answers. Enjoy! -- SUM 
+
+Section 1
+---------
+1. ??? 
+2. 
+Toposort with DFS: 
+Good input - a DAG. Runs in O(V+E)
+Bad input - not a DAG. No toposort is available. 
+
+Original Djikstra's: 
+Good input - Graph with non-negative weights
+Bad input - Graph with a negative weight edge. It only uses all edges once, so it might relax a negative edge after all outgoing vertices from that edge have been relaxed. 
+
+3. 
+1) 6
+2) 6
+3) 5 (?)
+
+Section 2
+---------
+1. ?? 
+2. NP-Hard. So no. 
+3. True. Example graph 0-----1
+         	   				 |
+         			   2-----|
+4. False. Do a toposort+BF once. O(V+E)
+   For the next run, adjust distances according to where the vertex is in the graph. O(VE)
+5. NP-Hard  
+
+
+Section 3
+---------
+3.1.2.1
+After 0 is processed, q = {1, 2}, d = [0, 1, 10, INF, INF]
+after 1 is processed, q = {2, 3}, d = [0, 1, 10, 3, INF]
+after 2 is processed, q = {3}, d = [0, 1, 10, 0, INF]
+after 3 is processed, q = {4}, d = [0, 1, 10, 0, 3]
+after 4 is processed, q = {} and d is unchanged. Terminates here. 
+
+3.1.2.2
+After 0 is processed, q = {1}, d = [0, 1000, INF]
+After 1 is processed, q = {2}, d = [0, 1000, 1015]
+after 2 is processed, q = {1}, d = [0, 1000-42, 1015]
+...
+And continues forever. 
+
+3.1.2.3
+No. Like we saw in the run of 1C, it goes into an infinite loop. This only happens if the negative weight cycle is reachable from the source. Negative weight cycles are ill-defined in SSSP. 
+
+3.1.2.4
+No. A vertex might be relaxed a second time, after all its successors have been relaxed. This will not let this vertex be put in the queue again, and thus all the paths from that vertex to the successors are wrong. 
+
+3.1.2.5
+Still correct answer. 
+But a vertex may have multiple instances of itself in the queue, and causing unnecessary slowdown. 
+
+Section 4
+---------
+4.1.2 Naive solution 
+Treat as unweighted graph and BFS. See if distance from source (you) is <= 2. 
+4.1.3
+For each of i's friends, see if 1)they are j, or 2)one of their friends is j. 
+
+4.2.2
+1. Vertices are marks for each section. EG: Sec1Marks8 is a vertex. Unweighted edges are going to all vertices in the next section. 
+2. 100N 
+3. Traversal/Path enumeration (???)
+
+4.2.3
+*Do a DFS downwards. O(V+E) 
+*For each recursive call to DFS include what path it has taken to get to this vertex. So when I've reached the last vertex, it will be with a DFS call including the string 13_19_1_25_19. 
+*Hash it and store it (this will be our "visited"). O(1)
+If there are no outgoing edges (we're done), sum the numbers. If matches T, globalCounter++ O(1)
+
+
