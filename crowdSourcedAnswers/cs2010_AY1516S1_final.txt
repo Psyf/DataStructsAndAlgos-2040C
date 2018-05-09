@@ -1,0 +1,46 @@
+Note to firstTimers: 
+This was created for AY17/18S2 of 2040C by CEG class of 2021, NUS. 
+Please do contribute if you know the answers, or opn up a comment thread if you want to discuss. 
+Note that we might have minor differences in syllabi, thus leading to blank answers. Enjoy! -- SUM 
+
+Section A
+---------
+1. 
+b) Tree. V vertices and V-1 edges. O(V+E) for SSSP 
+c) DAG. SSSP in O(V+E) for toposort 
+d) unweighted graphs. SSSP in O(V+E)
+e) ??  
+f) ?? 
+
+2.
+a) 1, 2
+b) S(h-1) + S(h-2) + 1
+c) 10=232, 15=2583, 20=28656
+
+3. a) None, since we always go downwards. 
+   b) 25
+   c) 6
+   d) 16
+   e) ????????
+
+Section B
+---------
+1. True. 1 can't go to 0, since it's a DAG and topoSort order is given. 
+2. False. Reason: Wtf
+3. True. Turn all the weights into negative and run the negative weight cycle detection BF.  
+4. False. Find a cycle using DFS and then see if the edges traversed between them are negative. Reconstructing the path is a bit tricky, but possible
+5. False. Trivial negative cycles are present. 
+
+Section C
+---------
+C.1 AdjList. Each charging station is a vertex, and connect all of them with edges, and the weight of the edge (from given formula) is stored alongside too
+
+C.2 
+For each edge, if weight > M, erase the edge. 
+Do a BFS SSSP irrelevant of edge weights. 
+
+C.3 
+Store the weights of all the edges and sort it in ascending order. 
+Beginning from the first, do C.2
+As soon as you can reach k from 1, that is your answer. 
+Note: you can speed up this process by using Binary search.  
