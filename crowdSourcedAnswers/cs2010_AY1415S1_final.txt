@@ -19,7 +19,8 @@ Section 2
 1. False. May be a bridge. 
 2. True. Otherwise MST will not be spanning the whole graph. 
 3. False. An example graph is two different paths with unique weights but the sum is equal 
-4. True. If there is a shorter path, there is at least one more shorter edge. Contrafiction. 
+4. True for positive weights. If there is a shorter path, there is at least one more shorter edge. Contradiction.
+Counter example is possible with negative weights.  
 5. False. If anything, it will have LESS number of toposorts. 
 
 Section 3
