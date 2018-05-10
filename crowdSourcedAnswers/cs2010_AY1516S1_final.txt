@@ -44,3 +44,16 @@ Store the weights of all the edges and sort it in ascending order.
 Beginning from the first, do C.2
 As soon as you can reach k from 1, that is your answer. 
 Note: you can speed up this process by using Binary search.  
+
+C.4
+Essentially a DAG. 
+Store it in the graph as such. 
+Do a traversal
+Counter++ everytime you see K. 
+
+C.5
+???
+
+D.1
+Djikstra twice to see if it changed. O(ELogV)
+D.2 and D.3 I have nothing fast enough :(
