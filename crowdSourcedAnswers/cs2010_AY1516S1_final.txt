@@ -20,7 +20,7 @@ c) 10=232, 15=2583, 20=28656
 3. a) None, since we always go downwards. 
    b) 25
    c) 6
-   d) 16
+   d) 25
    e) ????????
 
 Section B
